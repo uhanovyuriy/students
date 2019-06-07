@@ -23,31 +23,31 @@ CREATE UNIQUE INDEX users_unique_register_id_last_name_idx ON students (register
 CREATE TABLE identification_document
 (
   id                   INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  document_id          INTEGER                           NOT NULL,
-  document_series      VARCHAR                           NOT NULL,
-  document_number      VARCHAR                           NOT NULL,
-  date_give_document   TIMESTAMP           DEFAULT now() NOT NULL,
-  whom_give_document   VARCHAR                           NOT NULL,
-  document_path_disk   VARCHAR                           NOT NULL,
-  location_birth       VARCHAR                           NOT NULL,
-  date_birth           TIMESTAMP           DEFAULT now() NOT NULL,
-  nationality          VARCHAR                           NOT NULL,
-  number_division      INTEGER                           NOT NULL,
-  address_registration VARCHAR                           NOT NULL,
-  residential_address  VARCHAR                           NOT NULL,
+  document_id          INTEGER   NOT NULL,
+  document_series      VARCHAR   NOT NULL,
+  document_number      VARCHAR   NOT NULL,
+  date_give_document   TIMESTAMP NOT NULL,
+  whom_give_document   VARCHAR   NOT NULL,
+  document_path_disk   VARCHAR   NOT NULL,
+  location_birth       VARCHAR   NOT NULL,
+  date_birth           TIMESTAMP NOT NULL,
+  nationality          VARCHAR   NOT NULL,
+  number_division      INTEGER   NOT NULL,
+  address_registration VARCHAR   NOT NULL,
+  residential_address  VARCHAR   NOT NULL,
   FOREIGN KEY (document_id) REFERENCES students (id) ON DELETE CASCADE
 );
 
 CREATE TABLE education_document
 (
   id                  INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-  document_id         INTEGER                           NOT NULL,
-  document_series     VARCHAR                           NOT NULL,
-  document_number     VARCHAR                           NOT NULL,
-  date_give_document  TIMESTAMP           DEFAULT now() NOT NULL,
-  whom_give_document  VARCHAR                           NOT NULL,
-  document_path_disk  VARCHAR                           NOT NULL,
-  registration_number INTEGER                           NOT NULL,
+  document_id         INTEGER   NOT NULL,
+  document_series     VARCHAR   NOT NULL,
+  document_number     VARCHAR   NOT NULL,
+  date_give_document  TIMESTAMP NOT NULL,
+  whom_give_document  VARCHAR   NOT NULL,
+  document_path_disk  VARCHAR   NOT NULL,
+  registration_number INTEGER   NOT NULL,
   FOREIGN KEY (document_id) REFERENCES students (id) ON DELETE CASCADE
 )
 
