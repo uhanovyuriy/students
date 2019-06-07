@@ -35,6 +35,7 @@ CREATE TABLE identification_document
   nationality          VARCHAR                           NOT NULL,
   number_division      INTEGER,
   address_registration VARCHAR                           NOT NULL,
+  residential_address  VARCHAR                           NOT NULL,
   FOREIGN KEY (document_id) REFERENCES students (id) ON DELETE CASCADE
 );
 
