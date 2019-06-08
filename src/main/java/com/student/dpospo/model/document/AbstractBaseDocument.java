@@ -1,9 +1,7 @@
-package com.student.dpospo.model;
+package com.student.dpospo.model.document;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
@@ -15,14 +13,19 @@ import java.time.LocalDate;
 @MappedSuperclass
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString(callSuper = true)
-public abstract class AbstractBaseDocument extends AbstractPersistable<Integer> {
+public abstract class AbstractBaseDocument extends AbstractPersistable<Integer> implements Document {
 
     @Column(name = "student_id", nullable = false)
     @NotNull
+    @JsonIgnore
     protected Integer studentId;
+
+    @Column(name = "document_name", nullable = false)
+    @NotBlank
+    protected String documentName;
 
     @Column(name = "document_series", nullable = false)
     @NotNull
@@ -31,7 +34,6 @@ public abstract class AbstractBaseDocument extends AbstractPersistable<Integer> 
 
     @Column(name = "document_number", nullable = false)
     @NotBlank
-    @Size(min = 3, max = 20)
     protected String documentNumber;
 
     @Column(name = "date_give_document", nullable = false)
@@ -45,11 +47,4 @@ public abstract class AbstractBaseDocument extends AbstractPersistable<Integer> 
     @Column(name = "document_path_disk", nullable = false)
     @NotNull
     protected String documentPathDisk;
-
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "student_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @NotNull
-    protected Student student;
 }

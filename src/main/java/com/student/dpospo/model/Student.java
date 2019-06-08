@@ -9,7 +9,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Table(name = "students", uniqueConstraints = {@UniqueConstraint(columnNames = {"register_id", "last_name"},
@@ -23,7 +22,7 @@ public class Student extends AbstractPersistable<Integer> {
 
     @Column(name = "register_id", nullable = false, unique = true)
     @NotNull
-    private Integer registerId;
+    private String registerId;
 
     @Column(name = "first_name", nullable = false)
     @NotBlank
@@ -61,8 +60,6 @@ public class Student extends AbstractPersistable<Integer> {
 
     @Column(name = "registered", columnDefinition = "timestamp default now()")
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private LocalDate registered;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "students")
-    private List<AbstractBaseDocument> listDocuments;
+    @Setter(AccessLevel.NONE)
+    private final LocalDate registered = LocalDate.now();
 }

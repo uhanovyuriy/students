@@ -1,14 +1,14 @@
 DROP TABLE IF EXISTS identification_document;
 DROP TABLE IF EXISTS education_document;
 DROP TABLE IF EXISTS students;
-DROP SEQUENCE IF EXISTS global_seq;
+DROP SEQUENCE IF EXISTS hibernate_sequence;
 
-CREATE SEQUENCE global_seq
+CREATE SEQUENCE hibernate_sequence
   START 100000;
 
 CREATE TABLE students
 (
-  id                INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+  id                INTEGER PRIMARY KEY DEFAULT nextval('hibernate_sequence'),
   register_id       VARCHAR                 NOT NULL,
   first_name        VARCHAR                 NOT NULL,
   last_name         VARCHAR                 NOT NULL,
@@ -24,8 +24,9 @@ CREATE UNIQUE INDEX students_unique_register_id_last_name_idx
 
 CREATE TABLE identification_document
 (
-  id                   INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+  id                   INTEGER PRIMARY KEY DEFAULT nextval('hibernate_sequence'),
   student_id           INTEGER   NOT NULL,
+  document_name        VARCHAR   NOT NULL,
   document_series      VARCHAR   NOT NULL,
   document_number      VARCHAR   NOT NULL,
   date_give_document   TIMESTAMP NOT NULL,
@@ -42,8 +43,9 @@ CREATE TABLE identification_document
 
 CREATE TABLE education_document
 (
-  id                  INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+  id                  INTEGER PRIMARY KEY DEFAULT nextval('hibernate_sequence'),
   student_id          INTEGER   NOT NULL,
+  document_name       VARCHAR   NOT NULL,
   document_series     VARCHAR   NOT NULL,
   document_number     VARCHAR   NOT NULL,
   date_give_document  TIMESTAMP NOT NULL,
