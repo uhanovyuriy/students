@@ -9,15 +9,15 @@ CREATE SEQUENCE hibernate_sequence
 CREATE TABLE students
 (
   id                INTEGER PRIMARY KEY DEFAULT nextval('hibernate_sequence'),
-  register_id       VARCHAR                 NOT NULL,
-  first_name        VARCHAR                 NOT NULL,
-  last_name         VARCHAR                 NOT NULL,
-  middle_name       VARCHAR                 NOT NULL,
-  email             VARCHAR                 NOT NULL,
-  tel_number        VARCHAR                 NOT NULL,
-  tel_mobile_number VARCHAR                 NOT NULL,
-  language          VARCHAR                 NOT NULL,
-  registered        TIMESTAMP DEFAULT now() NOT NULL
+  register_id       VARCHAR                           NOT NULL,
+  first_name        VARCHAR                           NOT NULL,
+  last_name         VARCHAR                           NOT NULL,
+  middle_name       VARCHAR                           NOT NULL,
+  email             VARCHAR                           NOT NULL,
+  tel_number        VARCHAR                           NOT NULL,
+  tel_mobile_number VARCHAR                           NOT NULL,
+  language          VARCHAR                           NOT NULL,
+  registered        TIMESTAMP           DEFAULT now() NOT NULL
 );
 CREATE UNIQUE INDEX students_unique_register_id_last_name_idx
   ON students (register_id, last_name);
@@ -51,7 +51,7 @@ CREATE TABLE education_document
   date_give_document  TIMESTAMP NOT NULL,
   whom_give_document  VARCHAR   NOT NULL,
   document_path_disk  VARCHAR   NOT NULL,
-  registration_number INTEGER   NOT NULL,
+  registration_number VARCHAR   NOT NULL,
   FOREIGN KEY (student_id) REFERENCES students (id) ON DELETE CASCADE
 )
 

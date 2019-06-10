@@ -16,5 +16,5 @@ public class EducationDocument extends AbstractBaseDocument {
 
     @Column(name = "registration_number", nullable = false)
     @NotNull
-    private Integer registrationNumber;
+    private String registrationNumber;
 }
