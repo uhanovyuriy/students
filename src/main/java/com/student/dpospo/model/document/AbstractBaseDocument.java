@@ -18,10 +18,10 @@ import java.time.LocalDate;
 @ToString(callSuper = true)
 public abstract class AbstractBaseDocument extends AbstractPersistable<Integer> implements Document {
 
-    @Column(name = "student_id", nullable = false)
-    @NotNull
-    @JsonIgnore
-    protected Integer studentId;
+//    @Column(name = "student_id", nullable = false)
+//    @NotNull
+//    @JsonIgnore
+//    protected Integer studentId;
 
     @Column(name = "document_name", nullable = false)
     @NotBlank

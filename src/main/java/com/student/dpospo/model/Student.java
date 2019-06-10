@@ -1,6 +1,8 @@
 package com.student.dpospo.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.student.dpospo.model.document.EducationDocument;
+import com.student.dpospo.model.document.IdentificationDocument;
 import lombok.*;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -9,6 +11,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "students", uniqueConstraints = {@UniqueConstraint(columnNames = {"register_id", "last_name"},
@@ -62,4 +65,10 @@ public class Student extends AbstractPersistable<Integer> {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Setter(AccessLevel.NONE)
     private final LocalDate registered = LocalDate.now();
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
+    private List<IdentificationDocument> identificationDocuments;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
+    private List<EducationDocument> educationDocuments;
 }

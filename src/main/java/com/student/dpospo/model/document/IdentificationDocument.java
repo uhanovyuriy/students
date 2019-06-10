@@ -1,5 +1,6 @@
 package com.student.dpospo.model.document;
 
+import com.student.dpospo.model.Student;
 import lombok.*;
 
 import javax.persistence.*;
@@ -45,4 +46,8 @@ public class IdentificationDocument extends AbstractBaseDocument {
     @NotBlank
     @Size(min = 10, max = 50)
     private String residentialAddress;
+
+
+    @ManyToOne(optional = false)
+    private Student student;
 }
