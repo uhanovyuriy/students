@@ -1,4 +1,4 @@
 package com.student.dpospo.model.document;
 
-public interface Document {
+public interface DocumentStudent {
 }

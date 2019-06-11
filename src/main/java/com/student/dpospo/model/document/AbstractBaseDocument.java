@@ -1,6 +1,5 @@
 package com.student.dpospo.model.document;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -16,12 +15,7 @@ import java.time.LocalDate;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString(callSuper = true)
-public abstract class AbstractBaseDocument extends AbstractPersistable<Integer> implements Document {
-
-//    @Column(name = "student_id", nullable = false)
-//    @NotNull
-//    @JsonIgnore
-//    protected Integer studentId;
+public abstract class AbstractBaseDocument extends AbstractPersistable<Integer> implements DocumentStudent {
 
     @Column(name = "document_name", nullable = false)
     @NotBlank
